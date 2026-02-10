@@ -1,0 +1,29 @@
+[
+  {
+    "DisplayName": "Require Password",
+    "Description": "Sets a password clients must provide (redis-cli -a ...). Leave blank for no password.",
+    "Keywords": "requirepass auth password",
+    "FieldName": "RequirePass",
+    "InputType": "password",
+    "Category": "Security",
+    "IncludeInCommandLine": true,
+    "ParamFieldName": "requirepass",
+    "DefaultValue": "",
+    "SkipIfEmpty": true
+  },
+  {
+    "DisplayName": "Append Only File (AOF)",
+    "Description": "Enable append-only persistence (yes/no).",
+    "Keywords": "appendonly aof persistence",
+    "FieldName": "AppendOnly",
+    "InputType": "checkbox",
+    "Category": "Persistence",
+    "IncludeInCommandLine": true,
+    "ParamFieldName": "appendonly",
+    "EnumValues": {
+      "False": "no",
+      "True": "yes"
+    },
+    "DefaultValue": "no"
+  }
+]

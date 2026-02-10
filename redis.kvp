@@ -1,0 +1,39 @@
+# ---- Application ----
+App.DisplayName=Redis
+App.RootDir=.
+App.WorkingDir=.
+App.ExecutableLinux=redis-server
+App.CommandLineArgs=--bind {{$ApplicationIPBinding}} --port {{$ApplicationPort1}} {{$FormattedArgs}}
+App.CommandLineParameterFormat=--{0} {1}
+
+# Stop Redis cleanly
+App.ExitMethod=SIGTERM
+
+# Redis is not an interactive STDIN console app
+App.HasWriteableConsole=False
+App.HasReadableConsole=True
+
+# Default: local only
+App.ApplicationIPBinding=127.0.0.1
+App.ApplicationPort1=6379
+
+# No updater needed if using host packages or container packages
+App.UpdateSources=[{"UpdateStageName":"No update","UpdateSourcePlatform":"All","UpdateSource":"None"}]
+
+# ---- Console ----
+# Mark instance "Running" when Redis reports readiness
+Console.AppReadyRegex=^.*Ready to accept connections.*$
+
+# ---- Meta ----
+Meta.DisplayName=Redis (Local)
+Meta.OS=2
+Meta.AppConfigId=0f2df7ab-3c83-4e3b-93ef-6c0cce4b2a4e
+Meta.Author=local
+Meta.URL=https://redis.io/
+Meta.DisplayImageSource=none:
+Meta.ConfigRoot=redis.kvp
+Meta.ConfigManifest=redisconfig.json
+
+# Optional: if you want to run this inside AMP's container on Linux, auto-install redis packages:
+Meta.ContainerPolicy=RecommendedOnLinux
+Meta.ExtraContainerPackages=["redis-server","redis-tools"]
