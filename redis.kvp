@@ -25,7 +25,7 @@ App.UpdateSources=[{"UpdateStageName":"No update","UpdateSourcePlatform":"All","
 Console.AppReadyRegex=^.*Ready to accept connections.*$
 
 # ---- Meta ----
-Meta.DisplayName=Redis (Local)
+Meta.DisplayName=Redis
 Meta.OS=2
 Meta.AppConfigId=0f2df7ab-3c83-4e3b-93ef-6c0cce4b2a4e
 Meta.Author=local
