@@ -23,7 +23,7 @@ App.UpdateSources=[{"UpdateStageName":"No update","UpdateSourcePlatform":"All","
 Console.AppReadyRegex=(?i)^.*ready to accept connections.*$
 
 # ---- Meta ----
-Meta.DisplayName=RedisLocal
+Meta.DisplayName=Redis (Local)
 Meta.Description=Redis server instance
 Meta.OS=2
 Meta.AppConfigId=0f2df7ab-3c83-4e3b-93ef-6c0cce4b2a4e
@@ -32,5 +32,15 @@ Meta.URL=https://redis.io/
 Meta.DisplayImageSource=none:
 Meta.ConfigRoot=redis.kvp
 Meta.ConfigManifest=redisconfig.json
+
+# REQUIRED (workaround for the crash you hit)
+Meta.MinAMPVersion=2.4.2.0
+
+# If you want it to be allowed in containers:
+Meta.DockerRequired=False
+Meta.DockerBaseReadOnly=False
 Meta.ContainerPolicy=RecommendedOnLinux
+Meta.ContainerPolicyReason=
+Meta.Prerequsites=[]
 Meta.ExtraContainerPackages=["redis-server","redis-tools"]
+
