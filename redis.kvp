@@ -32,6 +32,5 @@ Meta.URL=https://redis.io/
 Meta.DisplayImageSource=none:
 Meta.ConfigRoot=redis.kvp
 Meta.ConfigManifest=redisconfig.json
-
-# If you want "local binary" (no Docker):
-Meta.ContainerPolicy=NotSupported
+Meta.ContainerPolicy=RecommendedOnLinux
+Meta.ExtraContainerPackages=["redis-server","redis-tools"]
