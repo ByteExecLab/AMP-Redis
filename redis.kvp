@@ -19,6 +19,7 @@ App.ApplicationPort1=6379
 
 App.UpdateSources=[{"UpdateStageName":"No update","UpdateSourcePlatform":"All","UpdateSource":"None"}]
 
+
 # ---- Console ----
 Console.AppReadyRegex=(?i)^.*ready to accept connections.*$
 
@@ -43,4 +44,4 @@ Meta.ContainerPolicy=RecommendedOnLinux
 Meta.ContainerPolicyReason=
 Meta.Prerequsites=[]
 Meta.ExtraContainerPackages=["redis-server","redis-tools"]
-
+Meta.DisplayImageSource=url:https://upload.wikimedia.org/wikipedia/commons/e/ee/Redis_logo.svg
