@@ -4,44 +4,49 @@ App.RootDir=.
 App.WorkingDir=.
 
 # Safer to use an absolute path for "local redis":
-# Run: which redis-server
 App.ExecutableLinux=/usr/bin/redis-server
 
-App.CommandLineArgs=--bind {{$ApplicationIPBinding}} --port {{$ApplicationPort1}} {{$FormattedArgs}}
+# Start with a real config file so it shows up in AMP File Manager.
+# Keep port tied to AMP's reserved port. Bind will come from redis.conf (UI).
+App.CommandLineArgs=./redis.conf --port {{$ApplicationPort1}}
+
+# We no longer rely on {{$FormattedArgs}} for most settings (they'll be written into redis.conf/users.acl)
+# but leaving CommandLineParameterFormat is harmless.
 App.CommandLineParameterFormat=--{0} {1}
 
 App.ExitMethod=SIGTERM
 App.HasWriteableConsole=False
 App.HasReadableConsole=True
 
-App.ApplicationIPBinding=127.0.0.1
+# Default port
 App.ApplicationPort1=6379
 
 App.UpdateSources=[{"UpdateStageName":"No update","UpdateSourcePlatform":"All","UpdateSource":"None"}]
-
 
 # ---- Console ----
 Console.AppReadyRegex=(?i)^.*ready to accept connections.*$
 
 # ---- Meta ----
 Meta.DisplayName=Redis (Local)
-Meta.Description=Redis server instance
+Meta.Description=Redis server instance (managed via redis.conf + users.acl)
 Meta.OS=2
 Meta.AppConfigId=0f2df7ab-3c83-4e3b-93ef-6c0cce4b2a4e
 Meta.Author=local
 Meta.URL=https://redis.io/
-Meta.DisplayImageSource=none:
+Meta.DisplayImageSource=url:https://upload.wikimedia.org/wikipedia/commons/e/ee/Redis_logo.svg
 Meta.ConfigRoot=redis.kvp
 Meta.ConfigManifest=redisconfig.json
 
 # REQUIRED (workaround for the crash you hit)
 Meta.MinAMPVersion=2.4.2.0
 
-# If you want it to be allowed in containers:
+# Tell AMP to generate config files from UI settings
+Meta.MetaConfigManifest=redismetaconfig.json
+
+# Container support
 Meta.DockerRequired=False
 Meta.DockerBaseReadOnly=False
 Meta.ContainerPolicy=RecommendedOnLinux
 Meta.ContainerPolicyReason=
 Meta.Prerequsites=[]
 Meta.ExtraContainerPackages=["redis-server","redis-tools"]
-Meta.DisplayImageSource=url:https://upload.wikimedia.org/wikipedia/commons/e/ee/Redis_logo.svg

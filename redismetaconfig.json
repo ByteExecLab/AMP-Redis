@@ -1,0 +1,47 @@
+[
+  {
+    "ConfigFile": "redis.conf",
+    "ConfigType": "kvp",
+    "ConfigFormat": "{0} {1}",
+    "Subsections": [
+      {
+        "Heading": "$root",
+        "SettingMappings": {
+          "RedisBind": "bind",
+          "ProtectedMode": "protected-mode",
+          "AclFilePath": "aclfile",
+
+          "MaxMemory": "maxmemory",
+          "MaxMemoryPolicy": "maxmemory-policy",
+
+          "AppendOnly": "appendonly",
+          "AppendFsync": "appendfsync",
+
+          "Databases": "databases",
+          "TimeoutSeconds": "timeout",
+          "TcpKeepaliveSeconds": "tcp-keepalive",
+          "MaxClients": "maxclients",
+          "LogLevel": "loglevel"
+        }
+      }
+    ]
+  },
+  {
+    "ConfigFile": "users.acl",
+    "ConfigType": "kvp",
+    "ConfigFormat": "{1}",
+    "Subsections": [
+      {
+        "Heading": "$root",
+        "SettingMappings": {
+          "AclLineDefault": "line0",
+          "AclLine1": "line1",
+          "AclLine2": "line2",
+          "AclLine3": "line3",
+          "AclLine4": "line4",
+          "AclLine5": "line5"
+        }
+      }
+    ]
+  }
+]

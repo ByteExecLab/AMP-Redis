@@ -1,29 +1,146 @@
 [
   {
-    "DisplayName": "Require Password",
-    "Description": "Sets a password clients must provide (redis-cli -a ...). Leave blank for no password.",
-    "Keywords": "requirepass auth password",
-    "FieldName": "RequirePass",
-    "InputType": "password",
-    "Category": "Security",
-    "IncludeInCommandLine": true,
-    "ParamFieldName": "requirepass",
-    "DefaultValue": "",
-    "SkipIfEmpty": true
+    "DisplayName": "Listen address (bind)",
+    "Description": "127.0.0.1 = local only. 0.0.0.0 = listen on all interfaces (secure it!).",
+    "Category": "Access",
+    "FieldName": "RedisBind",
+    "InputType": "text",
+    "DefaultValue": "127.0.0.1"
   },
   {
-    "DisplayName": "Append Only File (AOF)",
-    "Description": "Enable append-only persistence (yes/no).",
-    "Keywords": "appendonly aof persistence",
-    "FieldName": "AppendOnly",
-    "InputType": "checkbox",
-    "Category": "Persistence",
-    "IncludeInCommandLine": true,
-    "ParamFieldName": "appendonly",
+    "DisplayName": "Protected mode",
+    "Description": "Recommended ON unless you fully understand the risk.",
+    "Category": "Access",
+    "FieldName": "ProtectedMode",
+    "InputType": "enum",
     "EnumValues": {
-      "False": "no",
-      "True": "yes"
+      "yes": "On (recommended)",
+      "no": "Off"
     },
+    "DefaultValue": "yes"
+  },
+  {
+    "DisplayName": "ACL file path",
+    "Description": "Leave as ./users.acl unless you know why you’re changing it.",
+    "Category": "Access",
+    "FieldName": "AclFilePath",
+    "InputType": "text",
+    "DefaultValue": "./users.acl"
+  },
+
+  {
+    "DisplayName": "ACL: default user",
+    "Description": "Recommended: disable default if you expose Redis. Example: user default off",
+    "Category": "Users",
+    "FieldName": "AclLineDefault",
+    "InputType": "text",
+    "DefaultValue": "user default on nopass ~* &* +@all"
+  },
+  {
+    "DisplayName": "ACL user line 1",
+    "Description": "Example: user app on >StrongPass ~* &* +@all",
+    "Category": "Users",
+    "FieldName": "AclLine1",
+    "InputType": "text",
+    "DefaultValue": ""
+  },
+  { "DisplayName": "ACL user line 2", "Description": "Another ACL line.", "Category": "Users", "FieldName": "AclLine2", "InputType": "text", "DefaultValue": "" },
+  { "DisplayName": "ACL user line 3", "Description": "Another ACL line.", "Category": "Users", "FieldName": "AclLine3", "InputType": "text", "DefaultValue": "" },
+  { "DisplayName": "ACL user line 4", "Description": "Another ACL line.", "Category": "Users", "FieldName": "AclLine4", "InputType": "text", "DefaultValue": "" },
+  { "DisplayName": "ACL user line 5", "Description": "Another ACL line.", "Category": "Users", "FieldName": "AclLine5", "InputType": "text", "DefaultValue": "" },
+
+  {
+    "DisplayName": "Max memory",
+    "Description": "0 = unlimited. Otherwise use 256mb / 2gb etc.",
+    "Category": "Memory",
+    "FieldName": "MaxMemory",
+    "InputType": "text",
+    "DefaultValue": "0"
+  },
+  {
+    "DisplayName": "Maxmemory policy",
+    "Description": "Eviction policy when maxmemory is reached.",
+    "Category": "Memory",
+    "FieldName": "MaxMemoryPolicy",
+    "InputType": "enum",
+    "EnumValues": {
+      "noeviction": "noeviction",
+      "allkeys-lru": "allkeys-lru",
+      "volatile-lru": "volatile-lru",
+      "allkeys-random": "allkeys-random",
+      "volatile-random": "volatile-random",
+      "volatile-ttl": "volatile-ttl"
+    },
+    "DefaultValue": "noeviction"
+  },
+
+  {
+    "DisplayName": "Append Only File (AOF)",
+    "Description": "Enable AOF persistence.",
+    "Category": "Persistence",
+    "FieldName": "AppendOnly",
+    "InputType": "enum",
+    "EnumValues": { "no": "Off", "yes": "On" },
     "DefaultValue": "no"
+  },
+  {
+    "DisplayName": "AOF fsync policy",
+    "Description": "everysec is a common balance.",
+    "Category": "Persistence",
+    "FieldName": "AppendFsync",
+    "InputType": "enum",
+    "EnumValues": {
+      "always": "always",
+      "everysec": "everysec",
+      "no": "no"
+    },
+    "DefaultValue": "everysec"
+  },
+
+  {
+    "DisplayName": "Databases",
+    "Description": "Number of logical databases.",
+    "Category": "General",
+    "FieldName": "Databases",
+    "InputType": "number",
+    "DefaultValue": 16
+  },
+  {
+    "DisplayName": "Client timeout (seconds)",
+    "Description": "0 disables timeouts.",
+    "Category": "Networking",
+    "FieldName": "TimeoutSeconds",
+    "InputType": "number",
+    "DefaultValue": 0
+  },
+  {
+    "DisplayName": "TCP keepalive (seconds)",
+    "Description": "Keepalive interval.",
+    "Category": "Networking",
+    "FieldName": "TcpKeepaliveSeconds",
+    "InputType": "number",
+    "DefaultValue": 300
+  },
+  {
+    "DisplayName": "Max clients",
+    "Description": "Maximum simultaneous clients.",
+    "Category": "Networking",
+    "FieldName": "MaxClients",
+    "InputType": "number",
+    "DefaultValue": 10000
+  },
+  {
+    "DisplayName": "Log level",
+    "Description": "Log verbosity.",
+    "Category": "Logging",
+    "FieldName": "LogLevel",
+    "InputType": "enum",
+    "EnumValues": {
+      "debug": "debug",
+      "verbose": "verbose",
+      "notice": "notice",
+      "warning": "warning"
+    },
+    "DefaultValue": "notice"
   }
 ]
